@@ -1,0 +1,24 @@
+{
+  "name": "houm-coordinates",
+  "version": "1.0.0",
+  "description": "Prueba Técnica Houm",
+  "scripts": {
+    "test": "subpkg test",
+    "build": "subpkg run build",
+    "lint": "subpkg run lint",
+    "lint:fix": "subpkg run lint:fix"
+  },
+  "subPackages": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DemonICOLI/Houm-Coordinates.git"
+  },
+  "keywords": [
+    "houm"
+  ],
+  "author": "Javier Quiñones",
+  "license": "ISC",
+  "devDependencies": {
+    "subpackage": "^1.1.0"
+  }
+}
