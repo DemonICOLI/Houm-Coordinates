@@ -8,7 +8,9 @@
     "lint": "subpkg run lint",
     "lint:fix": "subpkg run lint:fix"
   },
-  "subPackages": [],
+  "subPackages": [
+    "coordinates-registration"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DemonICOLI/Houm-Coordinates.git"
@@ -17,7 +19,6 @@
     "houm"
   ],
   "author": "Javier Quiñones",
-  "license": "ISC",
   "devDependencies": {
     "subpackage": "^1.1.0"
   }
