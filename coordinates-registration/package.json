@@ -9,7 +9,7 @@
     "clean": "rimraf dist && rimraf coverage && rimraf CoordinatesRegistration.zip",
     "copy-mdl-files": "cp package.json dist && cd dist && npm i --production && cd ../",
     "copy-pck-files": "copyfiles -u 1 src/package.json dist/src",
-    "coverage": "nyc -r lcov -r text -e .ts -x \"test/**/*.spec.ts\" npm run test",
+    "coverage": "nyc -r lcov -r text -e .ts -x \"test/**/*.spec.ts\" -x \"src/index.ts\" -x \"src/config/Config.ts\" npm run test",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint '*/**/*.ts' --quiet --fix",
     "postbuild": "npm run copy-pck-files && npm run copy-mdl-files && npm run zip && mv CoordinatesRegistration.zip dist/",
@@ -20,10 +20,14 @@
   "license": "ISC",
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
+    "@types/aws-lambda": "^8.10.85",
     "@types/jasmine": "^3.10.2",
+    "@types/luxon": "^2.0.7",
     "@types/node": "^16.11.7",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
+    "aws-sdk": "^2.1031.0",
+    "aws-sdk-mock": "^5.4.0",
     "bestzip": "^2.2.0",
     "copyfiles": "^2.4.1",
     "eslint": "^8.2.0",
@@ -37,12 +41,17 @@
     "ts-node": "^10.4.0",
     "typescript": "^4.5.2"
   },
+  "dependencies": {
+    "inversify": "^6.0.1",
+    "luxon": "^2.1.1",
+    "reflect-metadata": "^0.1.13"
+  },
   "nyc": {
     "include": [
       "src"
     ],
     "exclude": [
-      "src/config/Config.ts"
+      "config/Config.ts"
     ]
   }
 }
