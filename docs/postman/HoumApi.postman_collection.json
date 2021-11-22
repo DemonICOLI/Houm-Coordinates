@@ -1,0 +1,103 @@
+{
+	"info": {
+		"_postman_id": "4a272594-c0dd-4ce2-8538-0eb763da2662",
+		"name": "HoumApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Houm Visits By Date",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.softwarevil.com/houm/houmer/1/visit?date=2021-11-22",
+					"protocol": "https",
+					"host": [
+						"api",
+						"softwarevil",
+						"com"
+					],
+					"path": [
+						"houm",
+						"houmer",
+						"1",
+						"visit"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2021-11-22"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Houm Trips Over Speed",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.softwarevil.com/houm/houmer/1/speed?date=2021-11-22&maxspeed=70",
+					"protocol": "https",
+					"host": [
+						"api",
+						"softwarevil",
+						"com"
+					],
+					"path": [
+						"houm",
+						"houmer",
+						"1",
+						"speed"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2021-11-22"
+						},
+						{
+							"key": "maxspeed",
+							"value": "70"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Houm Register Coordinates",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"latitude\": 5.02208,\n    \"longitude\": -74.00481\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.softwarevil.com/houm/houmer/1/visit",
+					"protocol": "https",
+					"host": [
+						"api",
+						"softwarevil",
+						"com"
+					],
+					"path": [
+						"houm",
+						"houmer",
+						"1",
+						"visit"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
