@@ -1,0 +1,137 @@
+openapi: "3.0.1"
+info:
+  title: "HoumAPI"
+  description: "TechTest Houm"
+  version: "2021-11-22T11:31:02Z"
+servers:
+- url: "https://api.softwarevil.com/{basePath}"
+  variables:
+    basePath:
+      default: "/houm"
+paths:
+  /houmer/{hoummerID}/visit:
+    get:
+      parameters:
+      - name: "hoummerID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "date"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-request-validator: "Validar parámetros de cadena de consulta\
+        \ y encabezados"
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:245959424594:function:HOUM-CoordTime/invocations"
+        responses:
+          default:
+            statusCode: "200"
+        passthroughBehavior: "when_no_match"
+        contentHandling: "CONVERT_TO_TEXT"
+    post:
+      parameters:
+      - name: "hoummerID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HoumCoordRegistrarion"
+        required: true
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-request-validator: "Cuerpo validado"
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:245959424594:function:HOUM-CoordRegistration/invocations"
+        responses:
+          default:
+            statusCode: "200"
+        passthroughBehavior: "when_no_match"
+        contentHandling: "CONVERT_TO_TEXT"
+  /houmer/{hoummerID}/speed:
+    get:
+      parameters:
+      - name: "hoummerID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "date"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+      - name: "maxspeed"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-request-validator: "Validar parámetros de cadena de consulta\
+        \ y encabezados"
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:245959424594:function:HOUM-SpeedDateQuery/invocations"
+        responses:
+          default:
+            statusCode: "200"
+        passthroughBehavior: "when_no_match"
+        contentHandling: "CONVERT_TO_TEXT"
+components:
+  schemas:
+    Empty:
+      title: "Empty Schema"
+      type: "object"
+    HoumCoordRegistrarion:
+      required:
+      - "latitude"
+      - "longitude"
+      type: "object"
+      properties:
+        latitude:
+          multipleOf: 0.0000010
+          maximum: 90
+          minimum: -90
+          type: "number"
+        longitude:
+          multipleOf: 0.0000010
+          maximum: 180
+          minimum: -180
+          type: "number"
+      additionalProperties: false
+x-amazon-apigateway-request-validators:
+  Cuerpo validado:
+    validateRequestParameters: false
+    validateRequestBody: true
+  Validar parámetros de cadena de consulta y encabezados:
+    validateRequestParameters: true
+    validateRequestBody: false
