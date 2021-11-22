@@ -9,8 +9,8 @@ import { DateProvider } from "../provider/date/DateProvider";
 import { LuxonDateProvider } from "../provider/date/luxon/LuxonDateProvider";
 import { CoordinatesRegistrationPresenter } from "../presenter/CoordinatesRegistrationPresenter";
 import { CoordinatesRegistrationAWSApiGWPresenter } from "../presenter/aws/api-gateway/CoordinatesRegistrationAWSApiGWPresenter";
-import {HoumerCoordinatesRepository} from "../repository/HoumerCoordinatesRepository";
-import {HoumerCoordinatesDynamoDBRepository} from "../repository/aws/dynamodb/HoumerCoordinatesDynamoDBRepository";
+import { HoumerCoordinatesRepository } from "../repository/HoumerCoordinatesRepository";
+import { HoumerCoordinatesDynamoDBRepository } from "../repository/aws/dynamodb/HoumerCoordinatesDynamoDBRepository";
 
 const AppContainer: Container = new Container();
 
