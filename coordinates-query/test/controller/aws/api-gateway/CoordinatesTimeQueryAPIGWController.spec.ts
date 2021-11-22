@@ -1,19 +1,19 @@
 import { Mock } from "ts-mocks";
 import { APIGatewayEventIdentity, APIGatewayProxyEvent } from "aws-lambda";
-import { ICoordinatesRegistrationService } from "../../../../src/service/ICoordinatesRegistrationService";
-import { CoordinatesRegistrationAWSApiGWController } from "../../../../src/controller/aws/api-gateway/CoordinatesRegistrationAWSApiGWController";
+import { CoordinatesTimeQueryAPIGWController } from "../../../../src/controller/aws/api-gateway/CoordinatesTimeQueryAPIGWController";
+import { ICoordinatesTimeQueryService } from "../../../../src/service/ICoordinatesTimeQueryService";
 
-describe("CoordinatesRegistrationAWSApiGWController Test Suite", () => {
+describe("CoordinatesTimeQueryAPIGWController Test Suite", () => {
 	describe("Success Test Cases", () => {
-		it("handleEvent should call registerCoordinates in the service", async () => {
+		it("handleEvent should call getHoumerDateCoordinatesInformation in the service", async () => {
 			const serviceMock = {
-				registerCoordinates: async (houmerID: number, latitude: number, longitude: number) => {
+				getHoumerDateCoordinatesInformation: async (houmerID: number, date: string) => {
 					return {};
 				},
 			};
-			spyOn(serviceMock, "registerCoordinates");
-			let service = new Mock<ICoordinatesRegistrationService>(serviceMock).Object,
-				controller = new CoordinatesRegistrationAWSApiGWController(service),
+			spyOn(serviceMock, "getHoumerDateCoordinatesInformation");
+			let service = new Mock<ICoordinatesTimeQueryService>(serviceMock).Object,
+				controller = new CoordinatesTimeQueryAPIGWController(service),
 				mockEvent: APIGatewayProxyEvent = {
 					multiValueQueryStringParameters: {},
 					requestContext: {
@@ -58,7 +58,7 @@ describe("CoordinatesRegistrationAWSApiGWController Test Suite", () => {
 					},
 					resource: "",
 					stageVariables: {},
-					body: '{"latitude":2,"longitude":3}',
+					body: null,
 					headers: {},
 					httpMethod: "",
 					isBase64Encoded: false,
@@ -67,10 +67,12 @@ describe("CoordinatesRegistrationAWSApiGWController Test Suite", () => {
 						hoummerID: "1",
 					},
 					multiValueHeaders: {},
-					queryStringParameters: {},
+					queryStringParameters: {
+						date: "2",
+					},
 				};
 			await controller.handleEvent(mockEvent);
-			expect(serviceMock.registerCoordinates).toHaveBeenCalledWith(1, 2, 3);
+			expect(serviceMock.getHoumerDateCoordinatesInformation).toHaveBeenCalledWith(1, "2");
 		});
 	});
 });

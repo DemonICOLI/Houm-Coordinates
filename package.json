@@ -10,7 +10,8 @@
   },
   "subPackages": [
     "coordinates-registration",
-    "metadata-calculator"
+    "metadata-calculator",
+    "coordinates-query"
   ],
   "repository": {
     "type": "git",
