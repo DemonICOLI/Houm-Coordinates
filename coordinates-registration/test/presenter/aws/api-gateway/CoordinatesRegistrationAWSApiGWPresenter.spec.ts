@@ -1,6 +1,6 @@
 import { CoordinatesRegistrationAWSApiGWPresenter } from "../../../../src/presenter/aws/api-gateway/CoordinatesRegistrationAWSApiGWPresenter";
 
-describe("CoordinatesTimeQueryAWSApiGWPresenter test suite", () => {
+describe("CoordinatesSpeedDateQueryAWSApiGWPresenter test suite", () => {
 	const presenter = new CoordinatesRegistrationAWSApiGWPresenter();
 	describe("Success Cases", () => {
 		it("generateOKResponse should return an object with status code 200", () => {

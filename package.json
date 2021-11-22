@@ -11,7 +11,8 @@
   "subPackages": [
     "coordinates-registration",
     "metadata-calculator",
-    "coordinates-query"
+    "coordinates-query",
+    "speed-query"
   ],
   "repository": {
     "type": "git",

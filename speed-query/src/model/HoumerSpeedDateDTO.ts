@@ -1,5 +1,4 @@
-export interface HoumerSpeedInfoDTO {
-	houmerID: number;
+export interface HoumerSpeedDateDTO {
 	originDepartureDate: string;
 	originLatitude: number;
 	originLongitude: number;

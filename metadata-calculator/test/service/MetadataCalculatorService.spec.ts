@@ -135,7 +135,7 @@ describe("MetadataCalculatorService Test Suite", () => {
 				originDepartureDate: "",
 				originLatitude: 51.874444,
 				originLongitude: 0.368056,
-				speed: "88.42",
+				speed: 88.42,
 				transitTimeInHours: 4,
 			});
 		});
