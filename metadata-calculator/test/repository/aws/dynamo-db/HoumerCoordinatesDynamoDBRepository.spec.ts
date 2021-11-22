@@ -38,7 +38,7 @@ describe("HoumerCoordinatesDynamoDBRepository Test Suite", () => {
 				originDepartureDate: "",
 				originLatitude: 0,
 				originLongitude: 0,
-				speed: "",
+				speed: 0,
 				transitTimeInHours: 0,
 			});
 			await expectAsync(result).toBeRejected();

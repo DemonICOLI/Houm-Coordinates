@@ -47,7 +47,7 @@ export class MetadataCalculatorService implements IMetadataCalculatorService {
 				const speedBetweenRecords = Utils.calculateSpeedInKmH(
 					distanceBetweenRecords,
 					timeBetweenRecordsInHours
-				).toFixed(2);
+				);
 				await this.repository.saveSpeedBetweenSitesInformation({
 					houmerID: houmerCoordinatesInformationRecord.houmerID,
 					originDepartureDate: sameDayPreviousInfoHoumerRecord.recordDateIso,

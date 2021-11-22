@@ -1,7 +1,7 @@
 import { Mock } from "ts-mocks";
-import { CoordinatesTimeQueryService } from "../../src/service/CoordinatesTimeQueryService";
+import { CoordinatesSpeedDateQueryService } from "../../src/service/CoordinatesSpeedDateQueryService";
 import { HoumerCoordinatesRepository } from "../../src/repository/HoumerCoordinatesRepository";
-import { CoordinatesTimeQueryPresenter } from "../../src/presenter/CoordinatesTimeQueryPresenter";
+import { CoordinatesSpeedDateQueryPresenter } from "../../src/presenter/CoordinatesSpeedDateQueryPresenter";
 
 describe("CoordinatesSpeedDateQueryService Test Suite", () => {
 	describe("Success Test Cases", () => {
@@ -15,14 +15,14 @@ describe("CoordinatesSpeedDateQueryService Test Suite", () => {
 				},
 			};
 			spyOn(presenterMock, "generateInternalServerErrorResponse");
-			const presenter = new Mock<CoordinatesTimeQueryPresenter>(presenterMock).Object;
+			const presenter = new Mock<CoordinatesSpeedDateQueryPresenter>(presenterMock).Object;
 			const repository = new Mock<HoumerCoordinatesRepository>({
-				getHoumerDateCoordinatesInformation: async (houmerID, dateIso) => {
+				getHoumerSpeedDateCoordinatesInformation: async (houmerID, dateIso) => {
 					throw "ERROR MOCK";
 				},
 			}).Object;
-			const service = new CoordinatesTimeQueryService(repository, presenter);
-			await service.getHoumerDateCoordinatesInformation(1, "2");
+			const service = new CoordinatesSpeedDateQueryService(repository, presenter);
+			await service.getHoumerSpeedDateCoordinatesInformation(1, "2", 40);
 			expect(presenter.generateInternalServerErrorResponse).toHaveBeenCalled();
 		});
 
@@ -36,23 +36,23 @@ describe("CoordinatesSpeedDateQueryService Test Suite", () => {
 				},
 			};
 			spyOn(presenterMock, "generateOKResponse");
-			const presenter = new Mock<CoordinatesTimeQueryPresenter>(presenterMock).Object;
+			const presenter = new Mock<CoordinatesSpeedDateQueryPresenter>(presenterMock).Object;
 			const repository = new Mock<HoumerCoordinatesRepository>({
-				getHoumerDateCoordinatesInformation: async (houmerID, dateIso) => {
+				getHoumerSpeedDateCoordinatesInformation: async (houmerID, dateIso) => {
 					return [];
 				},
 			}).Object;
-			const service = new CoordinatesTimeQueryService(repository, presenter);
-			await service.getHoumerDateCoordinatesInformation(1, "2");
+			const service = new CoordinatesSpeedDateQueryService(repository, presenter);
+			await service.getHoumerSpeedDateCoordinatesInformation(1, "2", 40);
 			expect(presenter.generateOKResponse).toHaveBeenCalled();
 		});
 
 		it("getMutantCountAndRatio should call getHoumerDateCoordinatesInformation", async () => {
 			const repositoryMock = {
-				getHoumerDateCoordinatesInformation: async () => [],
+				getHoumerSpeedDateCoordinatesInformation: async () => [],
 			};
-			spyOn(repositoryMock, "getHoumerDateCoordinatesInformation");
-			const presenter = new Mock<CoordinatesTimeQueryPresenter>({
+			spyOn(repositoryMock, "getHoumerSpeedDateCoordinatesInformation");
+			const presenter = new Mock<CoordinatesSpeedDateQueryPresenter>({
 				generateOKResponse: (bodyObject: object) => {
 					return {};
 				},
@@ -61,9 +61,9 @@ describe("CoordinatesSpeedDateQueryService Test Suite", () => {
 				},
 			}).Object;
 			const repository = new Mock<HoumerCoordinatesRepository>(repositoryMock).Object;
-			const service = new CoordinatesTimeQueryService(repository, presenter);
-			await service.getHoumerDateCoordinatesInformation(1, "2");
-			expect(repositoryMock.getHoumerDateCoordinatesInformation).toHaveBeenCalled();
+			const service = new CoordinatesSpeedDateQueryService(repository, presenter);
+			await service.getHoumerSpeedDateCoordinatesInformation(1, "2", 40);
+			expect(repositoryMock.getHoumerSpeedDateCoordinatesInformation).toHaveBeenCalled();
 		});
 	});
 });

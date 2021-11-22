@@ -10,9 +10,9 @@ export const CONSTANTS = {
 
 export const TYPES = {
 	HoumerCoordinatesRepository: Symbol.for("HoumerCoordinatesRepository"),
-	CoordinatesTimeQueryPresenter: Symbol.for("CoordinatesTimeQueryPresenter"),
-	CoordinatesTimeQueryService: Symbol.for("CoordinatesTimeQueryService"),
-	CoordinatesTimeQueryController: Symbol.for("CoordinatesTimeQueryController"),
+	CoordinatesSpeedDateQueryPresenter: Symbol.for("CoordinatesTimeQueryPresenter"),
+	CoordinatesSpeedDateQueryService: Symbol.for("CoordinatesTimeQueryService"),
+	CoordinatesSpeedDateQueryController: Symbol.for("CoordinatesTimeQueryController"),
 };
 
 export const HTTP_CODES = {
